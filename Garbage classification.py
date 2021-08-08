@@ -10,9 +10,11 @@ request_url = 'https://aip.baidubce.com/oauth/2.0/token?grant_type=client_creden
 response = requests.get(request_url)
 try:
     access_token = response.json()['access_token']
-    print("成功获取access_token")
+    echo="成功获取access_token"
 except:
-    print("access_token获取失败")
+    echo="access_token获取失败"
+finally:
+    print(echo)
 
 
 #识别图片，图片为py文件根目录的temp.jpg
@@ -37,13 +39,11 @@ try:
     garbage5=response.json()['result'][4]['keyword']
     percent5=str(round(response.json()['result'][4]['score']*100,2))+'%'
     data=[garbage1,garbage2,garbage3,garbage4,garbage5]
-    print('该图片显示的可能是：\n'+garbage1+'，概率：'+percent1+'\n'+
-                                 garbage2+'，概率：'+percent2+'\n'+
-                                 garbage3+'，概率：'+percent3+'\n'+
-                                 garbage4+'，概率：'+percent4+'\n'+
-                                 garbage5+'，概率：'+percent5+'\n')
+    echo='该图片显示的可能是：\n'+garbage1+'，概率：'+percent1+'\n'+garbage2+'，概率：'+percent2+'\n'+garbage3+'，概率：'+percent3+'\n'+garbage4+'，概率：'+percent4+'\n'+garbage5+'，概率：'+percent5+'\n'
 except:
-    print("图像识别失败")
+    echo="图像识别失败"
+finally:
+    print(echo)
 
 
 for i in data:
@@ -54,14 +54,11 @@ for i in data:
         concept=response.json()['data']['description']['Concept']#垃圾基本概念
         including=response.json()['data']['description']['Including']#垃圾主要包括
         release_requirement=response.json()['data']['description']['Release_requirement']#投放要求
-        print('垃圾类别：'+type+
-              '\n垃圾基本概念：'+concept+
-              '\n垃圾主要包括：'+including+
-              '\n投放要求：'+release_requirement)
+        echo='垃圾类别：'+type+'\n垃圾基本概念：'+concept+'\n垃圾主要包括：'+including+'\n投放要求：'+release_requirement
+        
         if concept is not None:
             break
     except:
-        pass
+        echo='垃圾分类失败，可能是图片过于离谱，或者服务器故障'
 
-
-
+print(echo)
