@@ -40,19 +40,21 @@ def baiduace(access_token):
         percent4=str(round(response.json()['result'][3]['score']*100,2))+'%'
         garbage5=response.json()['result'][4]['keyword']
         percent5=str(round(response.json()['result'][4]['score']*100,2))+'%'
-        #data=[garbage1,garbage2,garbage3,garbage4,garbage5]
         data={garbage1:percent1,garbage2:percent2,garbage3:percent3,garbage4:percent4,garbage5:percent5}
         echo='该图片显示的可能是：\n'+garbage1+'，概率：'+percent1+'\n'+garbage2+'，概率：'+percent2+'\n'+garbage3+'，概率：'+percent3+'\n'+garbage4+'，概率：'+percent4+'\n'+garbage5+'，概率：'+percent5+'\n'
+              
+
     except:
         echo="图像识别失败"
+
     finally:
         print(echo)
         return data
+    
 
 
-
-def classify(data):
-    for i in data:
+def classify(select_data):
+    for i in select_data:
         try:
             request_url = 'https://api.muxiaoguo.cn/api/lajifl?api_key=9319f855d710556c&m='+i
             response = requests.get(request_url)
@@ -63,6 +65,7 @@ def classify(data):
             echo='垃圾类别：'+type+'\n垃圾基本概念：'+concept+'\n垃圾主要包括：'+including+'\n投放要求：'+release_requirement
 
             if concept is not None:
+                print("识别了"+i)
                 break
         except:
             echo='垃圾分类失败，可能是图片过于离谱，或者服务器故障'
@@ -71,6 +74,10 @@ def classify(data):
     return type
 
 # token=token()
-# data=baiduace(token)
-# type=classify(data)
-# print(type)
+# data=baiduace(token)#显示的数据仍然是5个
+# select_data=dict(data)#复制字典
+# for i in list(select_data.keys()):#筛选出三个字以内的垃圾名，提高检测效率
+#     if len(i)>3:
+#         del select_data[i]
+# type=classify(select_data)
+
