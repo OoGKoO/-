@@ -1,38 +1,5 @@
-# Garbage_classification
-项目自用
+## Garbage_classification 垃圾分类系统
+#学校项目自用
 
 
-函数 控制舵机(x)：
-    舵机2，下面斜面旋转x度
-    舵机1，盛放垃圾的平台翻转180度
-    舵机1，盛放垃圾的平台再反方向翻转180度
 
-函数 屏幕显示(echo，type，concept，including，release_requirement):
-    在单片机屏幕上显示这些数据，垃圾类别最好使用四种图片
-
-main：
-    while(1):
-        echo=5个garbage变量和5个percent变量，弄成字符串，参考Garbage classification.py文件怎么弄的
-
-        type=获取Garbage classification.py文件的type变量
-
-        concept=与上面同理
-        including=与上面同理
-        release_requirement=与上面同理
-
-        if type=“干垃圾”：
-            屏幕显示(echo，干垃圾...)
-            控制舵机(0)
-        else if type=“湿垃圾”：
-            屏幕显示(echo，湿垃圾...)
-            控制舵机(45)
-        else if type=“可回收垃圾”：
-            屏幕显示(echo，可回收垃圾...)
-            控制舵机(90)
-        else if type=“有害垃圾”：
-            屏幕显示(echo，有害垃圾...)
-            控制舵机(135)
-        else：
-            屏幕显示未检测出垃圾类别，同时输出echo字符串提示可能是什么物体
-
-    
