@@ -6,16 +6,15 @@ import Garbage_classification as gc
 from picamera import PiCamera
 
 
-W = 480 #窗口宽度
-H = 320 #窗口高度
-result_H = 70   #显示结果的标签高度
-img_W=120 #图片宽度
-img_H=120 #图片高度
+W = 800 #窗口宽度
+H = 600 #窗口高度
+result_H = 150   #显示结果的标签高度
+img_W=200 #图片宽度
+img_H=200 #图片高度
 btnBoderWidth = 0.5 #边框宽度
-btnWidth = 480 #按钮宽度
-btnHeight = 130 #按钮高度
+btnHeight = 250 #按钮高度
 msFont = '微软雅黑' #字体
-fontSize = 40 #字体大小
+fontSize = 80 #字体大小
 
 mainWindows = tk.Tk()
 mainWindows.title('凌云智能垃圾分类桶')
@@ -48,8 +47,8 @@ def down(color):#结果输出
     yhlj=tk.Label(compound='center',image= img_yhlj)
     yhlj.place(x=img_W*3,y=result_H,width=img_W,height=img_H)#吧垃圾的类别高亮显示
 
-    data_label = tk.Label(mainWindows,font=(msFont,fontSize-30),bg='white',fg='black',textvariable=data_result)
-    data_label.place(x=0,y=img_H+result_H,width=btnWidth,height=btnHeight)
+    data_label = tk.Label(mainWindows,font=(msFont,fontSize-50),bg='white',fg='black',textvariable=data_result)
+    data_label.place(x=0,y=img_H+result_H,width=W,height=btnHeight)
 
 
 
@@ -62,7 +61,7 @@ def loading():#后台代码运行时提示等待
 
     data_result.set("该图片显示的可能是：\n\n\n\n\n")
     data_label = tk.Label(mainWindows,font=(msFont,fontSize-30),bg='white',fg='black',textvariable=data_result)
-    data_label.place(x=0,y=img_H+result_H,width=btnWidth,height=btnHeight)
+    data_label.place(x=0,y=img_H+result_H,width=W,height=btnHeight)
 
 
 
@@ -108,15 +107,15 @@ def click():#点击按钮运行程序
         color='DeepSkyBlue'
         str_result.set(type)
     elif type=='干垃圾':
-        img_khsw = tk.PhotoImage(file="img/干垃圾on.png")
+        img_glj = tk.PhotoImage(file="img/干垃圾on.png")
         color='black'
         str_result.set(type)
     elif type=='湿垃圾':
-        img_khsw = tk.PhotoImage(file="img/湿垃圾on.png")
+        img_slj = tk.PhotoImage(file="img/湿垃圾on.png")
         color='green'
         str_result.set(type)
     elif type=='有害垃圾':
-        img_khsw = tk.PhotoImage(file="img/有害垃圾on.png")
+        img_yhlj = tk.PhotoImage(file="img/有害垃圾on.png")
         color='red'
         str_result.set(type)
     else:
@@ -141,7 +140,6 @@ def init():#按钮按下后7秒，系统初始化
     global img_W
     global img_H
     global btnBoderWidth
-    global btnWidth
     global btnHeight
     global msFont
     global fontSize 
@@ -179,7 +177,7 @@ def init():#按钮按下后7秒，系统初始化
     yhlj.place(x=img_W*3,y=result_H,width=img_W,height=img_H)#显示垃圾类别图片
 
     button_start2 = tk.Button(mainWindows,font=(msFont,fontSize),text='运行',bd=btnBoderWidth,command=thread)
-    button_start2.place(x=0,y=img_H+result_H,width=btnWidth,height=btnHeight)
+    button_start2.place(x=0,y=img_H+result_H,width=W,height=btnHeight)
 
 
 
@@ -220,7 +218,7 @@ yhlj=tk.Label(compound='center',image= img_yhlj)
 yhlj.place(x=img_W*3,y=result_H,width=img_W,height=img_H)#显示垃圾类别图片
 
 button_start2 = tk.Button(mainWindows,font=(msFont,fontSize),text='运行',bd=btnBoderWidth,command=thread)
-button_start2.place(x=0,y=img_H+result_H,width=btnWidth,height=btnHeight)
+button_start2.place(x=0,y=img_H+result_H,width=W,height=btnHeight)
 #窗口初始化
 
 mainWindows.mainloop()#显示窗口
