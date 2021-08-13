@@ -1,26 +1,20 @@
-import gpiozero as gpio
+import RPi.GPIO as GPIO
 import time
 
-servo1 = 11  # GPIO0
-#servo2 = 12  # GPIO1
+GPIO.setwarnings(False)
+# GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD)
 
-myCorrection = 0
-maxPW = (2.0 + myCorrection) / 1000
-minPW = (1.0 - myCorrection) / 1000
-
-servo = gpio.Servo(servo1, min_pulse_width=minPW, max_pulse_width=maxPW)
+# servopin=18
+servopin = 12
+GPIO.setup(servopin, GPIO.OUT)
+p = GPIO.PWM(servopin, 50)
+p.start(0)
+time.sleep(1)
 
 while True:
-    print("Set value range -1.0 to +0.0")
-    for value in range(0, 11, 1):
-        value2 = (float(value) - 10) / 10
-        servo.value = value2
-        print(value2)
+    for i in range(0, 360, 10):
+        p.ChangeDutyCycle(2.5+10.0*i/360)
         time.sleep(0.1)
 
-    print("Set value range +0.0 to -0.9")
-    for value in range(11, 20, 1):
-        value2 = (float(value) - 10) / 10
-        servo.value = value2
-        print(value2)
-        time.sleep(0.1)
+GPIO.cleanup()
