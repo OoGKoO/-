@@ -1,6 +1,4 @@
-# -*-coding:utf-8 -*- 
-__author__ = "ZJL"
- 
+# -*- coding: UTF-8 -*-
 import cv2
 import time
  
