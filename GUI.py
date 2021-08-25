@@ -46,7 +46,7 @@ def down(color):  # 结果输出
     slj = tk.Label(compound='center', image=img_slj)
     slj.place(x=img_W*2, y=result_H, width=img_W, height=img_H)
     yhlj = tk.Label(compound='center', image=img_yhlj)
-    yhlj.place(x=img_W*3, y=result_H, width=img_W, height=img_H)  # 吧垃圾的类别高亮显示
+    yhlj.place(x=img_W*3, y=result_H, width=img_W, height=img_H)  # 把垃圾的类别高亮显示
 
     data_label = tk.Label(mainWindows, font=(
         msFont, fontSize-50), bg='white', fg='black', textvariable=data_result)
