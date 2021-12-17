@@ -12,7 +12,7 @@ def user_index(username):
         return render_template('return.html',report_title='失败!',report=report_text,url="/",url_name="登录页面")#判断cookie是否生效，如果无效则跳转到主页面
 
     else:
-        conn=pymysql.connect(host="121.5.156.175",
+        conn=pymysql.connect(host="",
                            user="root",
                            password="123456",
                            port=3306,
