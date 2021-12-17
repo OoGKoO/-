@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!-- 管理页面 -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/post.css') }}"> -->
+    <title>管理主页</title>
+</head>
+<body>
+    <div id="loginDiv">欢迎登录
+        <div id="ps">
+            {{username}}的垃圾分类系统管理页面
+        </div>
+        <form name="order" action="{{username}}/logout" method="post">
+            <input type="hidden" name="username" value={{username}}>  
+            <input type="submit" value="退出登录">
+        </form>
+        <br/>
+        <br/>
+        <br/>
+        <div id="garbage_table">
+            <table border="1" cellspacing="0">
+                <tr>
+                    <th>垃圾名称</th>
+                    <th>垃圾类型</th>
+                    <th>投放时间</th>
+                </tr>
+                {{garbage_table | safe}}
+            </table>
+        </div>
+</body>
+</html>

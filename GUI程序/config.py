@@ -1,5 +1,5 @@
 import tkinter as tk
-from getDatabase import *
+from database import *
 
 
 #页面模块参数，单独写在config.py文件，方便其他模块修改
@@ -16,7 +16,7 @@ msFont = '微软雅黑'#字体
 fontSize = 80#字体大小
 
 mainWindows = tk.Tk()
-mainWindows.title('凌云智能垃圾分类桶')
+mainWindows.title('垃圾分类系统')
 mainWindows.minsize(W, H)#设置窗口
 
 str_process = tk.StringVar()

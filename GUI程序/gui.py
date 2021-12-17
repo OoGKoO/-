@@ -3,11 +3,12 @@ import time
 import thread
 from config import *
 from speak import *
+from database import *
 
 
 #GUI各种触发事件
 
-def loading():#点击运行按钮，后台正在运行时显示“运行中”
+def Loading():#点击运行按钮，后台正在运行时显示“运行中”
     str_result.set("运行中")
     result = tk.Label(mainWindows, font=(msFont, fontSize),bg='white', fg='orange', textvariable=str_result)
     result.place(width=W, height=result_H)
@@ -18,7 +19,7 @@ def loading():#点击运行按钮，后台正在运行时显示“运行中”
 
 
 
-def click():#后台运行
+def Click():#后台运行
     global img_slj#垃圾类型图片全局变量
     global img_glj
     global img_khsw
@@ -79,15 +80,17 @@ def click():#后台运行
                          garbage[3]+"，概率："+percent[3]+"\n" +
                          garbage[4]+"，概率："+percent[4]+"\n")
 
-    down(color)#结果输出
-    SpeakType(type['name'],type['category'])#语音提示结果
-    # gpio.servo(angle)#转动舵机
-    time.sleep(2)
-    init()
+    Done(color)#后台运行完成后改变GUI显示
+    # SpeakType(type['name'],type['category'])#语音提示结果-------------------------------------------------------------------未来与舵机同步运行
+    # # gpio.servo(angle)#转动舵机
+    # PostLog(type['name'],type['category'])#运行记录上传至日志
+    # time.sleep(1)
+    thread.Running(type['name'],type['category'])#同时运行语音播报、舵机操作、写入日志
+    Init()#全部运行结束后将GUI页面初始化
 
 
 
-def down(color):
+def Done(color):#后台运行完成后改变GUI显示
     result = tk.Label(mainWindows,font=(msFont, fontSize),bg='white',fg=color,textvariable=str_result)
     result.place(width=W, height=result_H)#显示垃圾类别文本和文本颜色
 
@@ -105,7 +108,7 @@ def down(color):
 
 
 
-def init():
+def Init():#GUI页面初始化
     global img_slj#垃圾类型图片全局变量
     global img_glj
     global img_khsw
