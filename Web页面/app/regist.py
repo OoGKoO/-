@@ -34,7 +34,7 @@ def post_regist():
             print(report_text)
             return render_template('return.html',  title='失败!',report=report_text,url="/regist",url_name="注册页面")
 
-        conn=pymysql.connect(host="121.5.156.175",
+        conn=pymysql.connect(host="",
                            user="root",
                            password="123456",
                            port=3306,
