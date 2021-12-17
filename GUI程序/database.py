@@ -12,7 +12,7 @@ def PostDatabase():#导入到数据库
         yhlj=data['4']#有害垃圾
         list=slj+glj+khsw+yhlj#格式为列表嵌套字典
 
-    conn = pymysql.connect(host='121.5.156.175',
+    conn = pymysql.connect(host='',
                             db='Garbage_Classification',
                             user='root',
                             passwd='123456',
@@ -42,7 +42,7 @@ def PostDatabase():#导入到数据库
 
 
 def GetDatabase():#获取垃圾类型数据,用于程序运行时预先获取数据库垃圾类型，提高运行速度
-    conn = pymysql.connect(host='121.5.156.175',
+    conn = pymysql.connect(host='',
                             db='Garbage_Classification',
                             user='root',
                             passwd='123456',
@@ -60,7 +60,7 @@ def GetDatabase():#获取垃圾类型数据,用于程序运行时预先获取数
 
 
 def PostLog(name,category):#运行数据上传到数据库running_log表
-    conn = pymysql.connect(host='121.5.156.175',
+    conn = pymysql.connect(host='',
                             db='Garbage_Classification',
                             user='root',
                             passwd='123456',
